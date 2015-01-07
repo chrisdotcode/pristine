@@ -1,0 +1,92 @@
+@font-face {
+    font-family: "PT Mono";
+    font-style: normal;
+    font-weight: 400;
+    src: local("PT Mono"),
+         local("PTMono-Regular"),
+         url(../font/pt-mono.woff) format("woff");
+}
+html, body {
+    font-size: 1.1em;
+}
+html, body, h1, h2, h3, h4, h5, h6 {
+    font-family: "PT Mono", "Courier New";
+}
+pre {
+    border: 0;
+    line-height: 2em;
+    margin: 0 auto;
+    width: 90%;
+    margin-top: 1.5em;
+    margin-bottom: 1.5em;
+}
+#repo {
+    padding: 10px 10px 10px 10px;
+    background-color: #f39c12;
+    color: #fdffff;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+#by {
+    font-size: smaller;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    margin-top: 0;
+    margin-bottom: .5em;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+#stats {
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 1em;
+}
+#stats h3 {
+    font-size: smaller;
+}
+body main {
+    width: 90%;
+    margin: 0 auto;
+    /* hack, should be margin-top */
+    padding-top: .5em;
+}
+#readme .box-body {
+    padding-left: 2em;
+    padding-right: 2em;
+}
+#readme .box-body h1,
+#readme .box-body h2,
+#readme .box-body h3, 
+#readme .box-body h4,
+#readme .box-body h5
+#readme .box-body h6 {
+    font-weight: bold;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 1em;
+}
+#clone-link {
+    margin-bottom: .5em;
+}
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    #stats .small-box-footer p {
+        display: none;
+    }
+}/* Sticky footer styles
+-------------------------------------------------- */
+html {
+    position: relative;
+    min-height: 100%;
+}
+body {
+    /* Margin bottom by footer height */
+    margin-bottom: 60px;
+}
+.footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 60px;
+    background-color: #f5f5f5;
+}

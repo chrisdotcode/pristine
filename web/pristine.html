@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>$flags.name$
+        $if(repo.maintainer)$
+            by $repo.maintainer$
+        $endif$
+    </title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="web/css/bootstrap.css" rel="stylesheet">
+    <link href="web/css/font-awesome.css" rel="stylesheet">
+    <link href="web/css/AdminLTE.css" rel="stylesheet">
+    <link href="web/css/pristine.css" rel="stylesheet">
+</head>
+
+<body>
+    <header class="text-center">
+        <h1 id="repo">$flags.name$</h1>
+        <h2 id="by">
+            $if(repo.maintainer)$
+                By: $repo.maintainer$
+            $endif$
+        </h2>
+
+        <div id="stats" class="row">
+            <div class="col-md-3 col-xs-6">
+                <div class="small-box bg-green">
+                    <div class="inner">
+                        <h3>$repo.numCommits$ Commits</h3>
+                    </div>
+                    <a href="#latest-commit" class="small-box-footer">
+                        <p>Latest Commit</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-xs-6">
+                <div class="small-box bg-aqua">
+                    <div class="inner">
+                        <h3>$numBranches$ Branches</h3>
+                    </div>
+                    <a href="#branches" class="small-box-footer">
+                        <p>Branch List</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-xs-6">
+                <div class="small-box bg-red">
+                    <div class="inner">
+                        <h3>$numTags$ Tags</h3>
+                    </div>
+                    <a href="#tags" class="small-box-footer">
+                        <p>Tag List</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-md-3 col-xs-6">
+                <div class="small-box bg-blue">
+                    <div class="inner">
+                        <h3>$numContributors$ Contributors</h3>
+                    </div>
+                <a href="#contributors" class="small-box-footer">
+                    <p>Contributors&nbsp;List</p>
+                </a>
+                </div>
+            </div>
+
+        </div>
+    </header>
+
+    <main>
+        <div class="row">
+            <div class="col-md-9">
+                <div id="readme" class="box box-solid box-warning">
+                    <div class="box-header">
+                        <h2 class="box-title">
+                            <i class="fa fa-book"></i>
+                            README
+                        </h2>
+                    </div>
+                    <div class="box-body">
+                        $readme$
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div id="info" class="box box-default">
+                    <div class="box-header">
+                        <h3 class="box-title">Info</h3>
+                        <i class="fa fa-info box-tools pull-right"></i>
+                    </div>
+                    <div class="box-body">
+                        $if(flags.cloneLink)$
+                            <div id="clone-link" class="input-group">
+                                <span class="input-group-addon">Clone</span>
+                                <input type="text" value="$flags.cloneLink$" class="form-control" readonly>
+                            </div>
+                        $endif$
+
+                        $if(flags.downloadLink)$
+                            <a href="$flags.downloadLink$" class="btn btn-block btn-default btn-flat">
+                                <i class="fa fa-download"></i>
+                                Download
+                            </a>
+                        $endif$
+                    </div>
+                    <div class="box-footer">
+                        $if(flags.license)$
+                            License: $flags.license$
+                        $endif$
+                    </div>
+                </div>
+
+                <div id="latest-commit" class="box box-success">
+                    <div class="box-header">
+                        <h3 class="box-title">Most Recent Commit</h3>
+                        <time class="fa fa-clock-o box-tools pull-right" datetime="$repo.latestCommit.commitAuthor.signatureWhen$"></time>
+                    </div>
+                    <div class="box-body">
+                        $repo.latestCommit.commitMessage$
+                    </div>
+                    <div class="box-footer">
+                        By: $repo.latestCommit.commitAuthor.signatureName$
+                    </div>
+                </div>
+
+                <div id="branches" class="box box-info">
+                    <div class="box-header">
+                        <h3 class="box-title">Branches</h3>
+                        <i class="fa fa-code-fork box-tools pull-right"></i>
+                    </div>
+                    <div class="box-body">
+                        <ul>
+                            $for(branch in repo.branches)$
+                              <li>$branch$</li>
+                            $endfor$
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="tags" class="box box-danger">
+                    <div class="box-header">
+                        <h3 class="box-title">Tags</h3>
+                        <i class="fa fa-tags box-tools pull-right"></i>
+                    </div>
+                    <div class="box-body">
+                        <ul>
+                            $for(tag in repo.tags)$
+                              <li>$tag$</li>
+                            $endfor$
+                        </ul>
+                    </div>
+                </div>
+
+                <div id="contributors" class="box box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Contributors</h3>
+                        <i class="fa fa-users box-tools pull-right"></i>
+                    </div>
+                    <div class="box-body">
+                        <ul>
+                            $for(contributor in repo.contributors)$
+                                <li>
+                                    <a href="mailto:$contributor.email$">
+                                        $contributor.author$
+                                    </a>
+                                </li>
+                            $endfor$
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-9">
+                <div id="files" class="box box-solid box-primary">
+                    <div class="box-header">
+                        <h3 class="box-title">Files</h3>
+                    </div>
+                    <div class="box-body">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Size</th>
+                                    <th>Modified</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                $for(file in repo.files)$
+                                    <tr>
+                                        <td>
+                                            <i class="fa fa-$file.icon$"> </i>
+                                            <a href="$flags.dir$/$file.name$">$file.name$</a>
+                                        </td>
+                                        <td>$file.size$</td>
+                                        <td>$file.modified$</td>
+                                    </tr>
+                                $endfor$
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer text-center">
+        Generated by <a href="https://code.sc/code/pristine">pristine</a>, version $version$.
+    </footer>
+
+    <script src="web/js/pristine.js"></script>
+
+</body>
+</html>

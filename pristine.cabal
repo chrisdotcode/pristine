@@ -1,0 +1,46 @@
+name:          pristine
+version:       0.1.0.0
+synopsis:      Generates static summaries of git repositories.
+description:
+    Pristine takes git repositories and generates beautiful,
+    purely static HTML summaries of the contents therein.
+
+    As opposed to hosting one's code on a third-party service,
+    pristine generates stand-alone project summaries that can
+    be served from the user's own webservers, emailed around,
+    or whatever else. It's just static content - nothing fancy,
+    ya' know?
+
+homepage:      https://code.sc/code/pristine
+license:       BSD3
+license-file:  LICENSE
+author:        chrisdotcode
+maintainer:    chris@code.sc
+copyright:     (c) 2015 Chris Blake <chris@code.sc>
+category:      Documentation
+build-type:    Simple
+cabal-version: >= 1.10
+
+executable pristine
+  main-is:       Pristine/Main.hs
+  build-depends: aeson                == 0.8.0.2
+               , base                 >= 4.7 && < 4.8
+               , blaze-html           == 0.7.0.2
+               , containers           == 0.5.5.1
+               , directory            == 1.2.1.0
+               , gitlib-libgit2       == 3.1.0.2
+               , gitlib               == 3.1.0.1
+               , hit                  == 0.6.2
+               , markdown             == 0.1.8
+               , monad-control        <  1.0
+               , optparse-applicative == 0.11.0.1
+               , simple-templates     == 0.8.0.0
+               , system-filepath      == 0.4.12
+               , text                 == 1.1.1.3
+               , tagged               == 0.7.2
+               , time                 == 1.4.2
+               , unix                 == 2.7.0.1
+
+  default-language:   Haskell2010
+  default-extensions: OverloadedStrings
+  ghc-options:        -threaded -Wall
